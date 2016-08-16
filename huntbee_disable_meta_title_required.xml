@@ -1,0 +1,20 @@
+<modification>
+	<id>HUNTBEE DISABLE META FIELD AS REQUIRED</id>
+	<version>7.1</version>
+	<vqmver>2.X</vqmver>
+	<author>WWW.HUNTBEE.COM</author>
+
+  	<!-- PRODUCT PAGE SEO --> 
+	<file name="admin/controller/catalog/*.php">		
+		<operation error="skip">
+            <search position="replace"><![CDATA[if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {]]></search>
+            <add><![CDATA[/*if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {]]>
+            </add>
+        </operation>
+		<operation error="skip">
+            <search position="after" offset="1"><![CDATA[$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');]]></search>
+            <add><![CDATA[*/]]>
+            </add>
+        </operation>
+    </file>
+</modification>
